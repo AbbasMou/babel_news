@@ -11,19 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('news_categories', function (Blueprint $table) {
-            $table->id();
-            $table->string('name'); // Column for the category name
-            $table->integer('click_count')->default(0); // Column for the click count
-            
-        });
+        
     }
-    
+
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('news_categories');
+        Schema::table('clicks', function (Blueprint $table) {
+            $table->dropColumn('user_id');
+        });
+
     }
 };

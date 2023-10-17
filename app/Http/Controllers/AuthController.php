@@ -11,10 +11,16 @@ use Symfony\Component\HttpFoundation\Response;
 
 class AuthController extends Controller
 {
+    /**
+     * Register a new user
+     * @param Request $request
+     * @return \Illuminate\Database\Eloquent\Model
+     */
+
     public function register(Request $request)
     {
-        // create a user 
-        // extract from the response the name , email ,and password
+
+        // Create a new user with data from the request.
         return User::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
@@ -24,6 +30,13 @@ class AuthController extends Controller
 
         ]);
     }
+
+    /**
+     * Log in a user and return a JWT token.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function login(Request $request)
     {
         if (!Auth::attempt($request->only('email', 'password'))) {
@@ -39,10 +52,14 @@ class AuthController extends Controller
             'message' => 'success'
         ])->withCookie($cookie); //backend will grab the cookie that incldes the jwt token , however frontend will take the success message 
     }
+
+
     public function user()
     {
         return Auth::user();
     }
+
+
     public function logout()
     {
         $cookie = Cookie::forget('jwt');
