@@ -20,6 +20,6 @@ class NewsCategoriesSeeder extends Seeder
             ['name' => 'اقتصاد', 'click_count' => 0],
             ['name' => 'فيديو وصور', 'click_count' => 0],
             
-        ]);
+        ]); 
     }
 }
