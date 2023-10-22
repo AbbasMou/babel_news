@@ -32,3 +32,4 @@ Route::patch('clicks/{category}', [\App\Http\Controllers\ClicksController::class
 Route::post('clicks', [\App\Http\Controllers\ClicksController::class, 'storeClick']);
 // aggregates route 
 Route::get('aggregates/{category}/{period}', [\App\Http\Controllers\AggregatesController::class, 'getAggregates']);
+Route::get('categories', [\App\Http\Controllers\CategoriesController::class,'getCategories']);
